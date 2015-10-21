@@ -1,0 +1,110 @@
+ <!DOCTYPE html>
+   <html>
+   <head>
+     <meta charset="utf-8">
+   <!--
+File: /~ali/public_html/assignment5.html
+91.461 Assignment 6:  Creating an Interactive Dynamic Table
+Name: Alexander Li
+Email: Alexander_li1@student.uml.edu
+Affiliation: Umass Lowell Computer Science Undergraduate, in class 91.461 GUI Programming I
+Date Created: 10/20/2015
+Description: Dynamically created a table based on user inputs
+-->   
+   <title>Assignment 6</title>
+   <script type="text/javascript">
+       //validation function to check if all input boxes are filled in
+       var validate = function(){
+           var input1 = document.getElementById("multiplierstart");
+           var input2 = document.getElementById("multiplierend");
+           var input3 = document.getElementById("multiplicandstart");
+           var input4 = document.getElementById("multiplicandend");
+           //checks to see if any inputs are empty, or if ending values are greater than starting values
+           if((input1.value === "") || (input2.value === "") || (input3.value === "") || (input4.value === "") || (input2.value < input1.value) || (input4.value < input1.value)){
+               document.getElementById("errormsg").innerHTML = 
+                       "Please make sure all inputs are filled out, and that no ending values are less than the corresponding starting values";
+               return false;
+           }
+           else{
+               true;
+           }
+       }
+       // Generates multiplication table
+       var createTable = function(){
+           //Removes error msg if there was a previous one leftover
+           document.getElementById("errormsg").innerHTML =
+                   "";
+           //Calculate amount of rows and cols based on user input
+           var rows = document.getElementById("multiplierend").value - document.getElementById("multiplierstart").value + 1;
+           console.log(rows);
+           var cols = document.getElementById("multiplicandend").value - document.getElementById("multiplicandstart").value + 1;
+           console.log(cols);
+           var strheader = "<table border='1'>\n";
+           var strbody = "";
+           var curmultiplier = document.getElementById("multiplierstart").value;
+           var curmultiplicand = document.getElementById("multiplicandstart").value;
+           
+           for(var i = 0; i <= rows; i++){
+               strbody += "<tr>";
+               for(var j = 0; j <= cols; j++){
+                   strbody += "<td>";
+                   //check to see if it should display the multiplicand/multiplier (first row/column will show multiplier/multiplicand not the multiplication results)
+                   if((i === 0) || (j ===0)){
+                       //top left space needs to be left empty
+                       if((i === 0) && (j ===0)){
+                           strbody += "";
+                       }
+                       //show multiplier
+                       if((i ===0) && (j !== 0)){
+                           strbody += "" + curmultiplicand + "";
+                       }
+                       //show multiplicand
+                       if((i !== 0) && (j === 0)){
+                           strbody += "" + curmultiplier + "";
+                       }
+                           
+                   }
+                   //inside table so regular multiplication
+                   else{
+                       strbody += "" + (curmultiplier * curmultiplicand) + "";
+                   }
+                   console.log(i + "," + j + "," + curmultiplier + "," + curmultiplicand)
+                   strbody += "</td>";
+                   //increment multiplicand  if moving across a row on the inside table
+                   if (j !== 0){
+                       curmultiplicand++;
+                   }
+               }
+               strbody += "</tr>\n";
+               //increment multiplier if moving down a column on the inside table
+               if (i !== 0){
+                   curmultiplier++;
+               }
+               //reset multiplicand value to starting value each time we move down one row
+               curmultiplicand = document.getElementById("multiplicandstart").value;
+           }
+           var strfooter = "</table>";
+           document.getElementById("usertable").innerHTML = strheader + strbody + strfooter;
+       }
+       
+       
+   </script>
+
+   </head>
+   
+     <body>
+         <!-- Generate input boxes for form -->
+         <form id="multform" action="javascript:createTable();" onsubmit="return validate();">
+            <p>Please enter the following numbers.</p><br>
+            Multiplier Start: <input type="number" id="multiplierstart" name="multiplierstart"><br>
+            Multiplier End: <input type="number" id="multiplierend" name="multiplierend"><br>
+            Multiplicand Start: <input type="number" id="multiplicandstart" name="multiplicandstart"><br>
+            Multiplicand End: <input type="number" id="multiplicandend" name="multiplicandend"><br>
+            <br><br>
+            <input type="submit" value="Generate Table">
+         </form>
+         <p id="errormsg"></p>
+         <div id="usertable"></div>
+     </body>
+   
+   </html>
