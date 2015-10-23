@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
    <html>
    <head>
      <meta charset="utf-8">
@@ -12,7 +12,6 @@ Date Created: 10/20/2015
 Description: Dynamically created a table based on user inputs
 -->   
    <title>Assignment 6</title>
-   <link rel="stylesheet" type="text/css" href="css/dynamictable.css">
    <script type="text/javascript">
        //validation function to check if all input boxes are filled in
        var validate = function(){
@@ -21,8 +20,7 @@ Description: Dynamically created a table based on user inputs
            var input3 = document.getElementById("multiplicandstart");
            var input4 = document.getElementById("multiplicandend");
            //checks to see if any inputs are empty, or if ending values are greater than starting values
-           if((input1.value == "") || (input2.value == "") || (input3.value == "") || (input4.value == "") || (number(input2.value) < number(input1.value)) || (number(input4.value) < number(input3.value))){
-               console.log(input1.value + "," + input2.value + "," +input3.value + "," + input4.value);
+           if((input1.value === "") || (input2.value === "") || (input3.value === "") || (input4.value === "") || (input2.value < input1.value) || (input4.value < input1.value)){
                document.getElementById("errormsg").innerHTML = 
                        "Please make sure all inputs are filled out, and that no ending values are less than the corresponding starting values";
                return false;
@@ -49,27 +47,28 @@ Description: Dynamically created a table based on user inputs
            for(var i = 0; i <= rows; i++){
                strbody += "<tr>";
                for(var j = 0; j <= cols; j++){
-                   strbody += "<td";
+                   strbody += "<td>";
                    //check to see if it should display the multiplicand/multiplier (first row/column will show multiplier/multiplicand not the multiplication results)
                    if((i === 0) || (j ===0)){
                        //top left space needs to be left empty
                        if((i === 0) && (j ===0)){
-                           strbody += " class='empty'>";
+                           strbody += "";
                        }
                        //show multiplier
                        if((i ===0) && (j !== 0)){
-                           strbody += " class='outrow'>" + curmultiplicand + "";
+                           strbody += "" + curmultiplicand + "";
                        }
                        //show multiplicand
                        if((i !== 0) && (j === 0)){
-                           strbody += " class='outrow'>" + curmultiplier + "";
+                           strbody += "" + curmultiplier + "";
                        }
                            
                    }
                    //inside table so regular multiplication
                    else{
-                       strbody += ">" + (curmultiplier * curmultiplicand) + "";
+                       strbody += "" + (curmultiplier * curmultiplicand) + "";
                    }
+                   console.log(i + "," + j + "," + curmultiplier + "," + curmultiplicand)
                    strbody += "</td>";
                    //increment multiplicand  if moving across a row on the inside table
                    if (j !== 0){
@@ -90,12 +89,12 @@ Description: Dynamically created a table based on user inputs
        
        
    </script>
+
    </head>
    
      <body>
-         <h1>Dynamic Table Generator</h1>
          <!-- Generate input boxes for form -->
-         <form action="javascript:createTable();" onsubmit="return validate();">
+         <form id="multform" action="javascript:createTable();" onsubmit="return validate();">
             <p>Please enter the following numbers.</p><br>
             Multiplier Start: <input type="number" id="multiplierstart" name="multiplierstart"><br>
             Multiplier End: <input type="number" id="multiplierend" name="multiplierend"><br>
