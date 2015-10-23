@@ -21,8 +21,8 @@ Description: Dynamically created a table based on user inputs
            var input3 = document.getElementById("multiplicandstart");
            var input4 = document.getElementById("multiplicandend");
            //checks to see if any inputs are empty, or if ending values are greater than starting values
-           if((input1.value == "") || (input2.value == "") || (input3.value == "") || (input4.value == "") || (number(input2.value) < number(input1.value)) || (number(input4.value) < number(input3.value))){
-               console.log(input1.value + "," + input2.value + "," +input3.value + "," + input4.value);
+           if((input1.value === "") || (input2.value === "") || (input3.value === "") || (input4.value === "") || (parseInt(input2.value) < parseInt(input1.value)) || (parseInt(input4.value) < parseInt(input3.value))){
+               console.log(typeof(input1.value));
                document.getElementById("errormsg").innerHTML = 
                        "Please make sure all inputs are filled out, and that no ending values are less than the corresponding starting values";
                return false;
