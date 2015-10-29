@@ -24,16 +24,19 @@ table {
     margin-right:auto;
     border: 1px solid #1ABC9C;
   }
+  //cell styling
   td{
       width: 4rem;
   height: 2rem;
   border: 1px solid #ccc;
   text-align: center;
   }
+  //topleft box
   .empty{
       background: #1ABC9C;
   border-color: #1ABC9C;
   }
+  //multiplier/multiplicand row or column
   .outrow{
       font-weight: bold;
       color: black;
