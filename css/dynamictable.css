@@ -14,7 +14,7 @@ body {
     color: #ffffff;
     font-family: 'Lato', sans-serif;
 }
-//centering table
+/*centering table */
 div{
       text-align: center;
   }
@@ -31,7 +31,7 @@ table {
   border: 1px solid #ccc;
   text-align: center;
   }
-  //topleft box
+  /*topleft box */
   .empty{
       background: #1ABC9C;
   border-color: #1ABC9C;
