@@ -36,7 +36,7 @@ table {
       background: #1ABC9C;
   border-color: #1ABC9C;
   }
-  //multiplier/multiplicand row or column
+  /*multiplier/multiplicand row or column */
   .outrow{
       font-weight: bold;
       color: black;
