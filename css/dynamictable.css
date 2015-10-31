@@ -24,7 +24,7 @@ table {
     margin-right:auto;
     border: 1px solid #1ABC9C;
   }
-  //cell styling
+  /*cell styling */
   td{
       width: 4rem;
   height: 2rem;
